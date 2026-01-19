@@ -11,9 +11,9 @@ class PageService {
     return res.data;
   }
 
-  static async getPageList(user_id) {
+  static async getPageList() {
     const res = await axiosInstance.get(
-      `/pages/${encodeURIComponent(user_id)}`,
+      "/pages",
       {
         timeout: 60000,
       },

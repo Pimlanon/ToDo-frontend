@@ -10,6 +10,13 @@ class TaskService {
     return res.data;
   }
 
+  static async getSidebar(pageId) {
+    const res = await axiosInstance.get(`/tasks/sidebar/${pageId}`, {
+      timeout: 60000,
+    });
+    return res.data;
+  }
+
   static async edit(taskId, body) {
     const res = await axiosInstance.put(`/tasks/${taskId}`, {
       ...body

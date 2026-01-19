@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import TaskService from "@/services/tasks.service";
 import { toast } from "sonner";
 
-export const useCreateTask = (userId) => {
+export const useCreateTask = (page_id) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -13,7 +13,8 @@ export const useCreateTask = (userId) => {
     },
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["page", userId] }); // refetch data
+      queryClient.invalidateQueries({ queryKey: ["page"] }); // refetch data
+      queryClient.invalidateQueries({ queryKey: ["sidebar", page_id] }); // refetch data
 
       toast.success("Task created successfully", {
         id: "create-task",
@@ -29,7 +30,7 @@ export const useCreateTask = (userId) => {
   });
 };
 
-export const useDeleteTask = (userId) => {
+export const useDeleteTask = (page_Id) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -40,7 +41,8 @@ export const useDeleteTask = (userId) => {
     },
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["page", userId] }); // refetch data
+      queryClient.invalidateQueries({ queryKey: ["page"] }); // refetch data
+      queryClient.invalidateQueries({ queryKey: ["sidebar", page_Id] }); // refetch data
 
       toast.success("Task deleted", {
         id: "delete-task",
@@ -55,7 +57,7 @@ export const useDeleteTask = (userId) => {
   });
 };
 
-export const useEditTask = (userId) => {
+export const useEditTask = (page_id) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -66,7 +68,8 @@ export const useEditTask = (userId) => {
     },
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["page", userId] }); // refetch data
+      queryClient.invalidateQueries({ queryKey: ["page"] }); // refetch data
+      queryClient.invalidateQueries({ queryKey: ["sidebar", page_id] }); // refetch data
 
       toast.success("Task edited", {
         id: "edit-task",
@@ -80,3 +83,14 @@ export const useEditTask = (userId) => {
     },
   });
 };
+
+export const useGetSidebarByPage = (page_id) => {
+ const query = useQuery({
+    queryKey: ["sidebar", page_id],
+    queryFn: () => TaskService.getSidebar(page_id),
+    enabled: !!page_id,
+    refetchOnWindowFocus: false,
+  });
+
+  return query;
+}

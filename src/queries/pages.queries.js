@@ -13,16 +13,15 @@ export const useGetTaskByPage = (page_id) => {
   return query;
 };
 
-export const useGetPageList = (user_id) => {
-   const query = useQuery({
-    queryKey: ["page-list", user_id],
-    queryFn: () => PageService.getPageList(user_id),
-    enabled: !!user_id,
+export const useGetPageList = () => {
+  const query = useQuery({
+    queryKey: ["page-list"],
+    queryFn: () => PageService.getPageList(),
     refetchOnWindowFocus: false,
   });
 
   return query;
-}
+};
 
 export const useUpdatePageTitle = (pageId) => {
   const queryClient = useQueryClient();
@@ -30,15 +29,11 @@ export const useUpdatePageTitle = (pageId) => {
   return useMutation({
     mutationFn: (title) => PageService.updatePageTitle(pageId, title),
 
-    onMutate: () => {
-      // toast.loading("Saving title...", { id: "update-title" });
-    },
+    onMutate: () => {},
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["page", pageId] }); // refetch data
       queryClient.invalidateQueries({ queryKey: ["pageList"] }); // refetch data
-
-      // toast.success("Title updated", { id: "update-title" });
     },
 
     onError: () => {
