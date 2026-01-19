@@ -1,5 +1,5 @@
 import React from "react";
-import { X, Flag, Check } from "lucide-react";
+import { X, Flag, Calendar as CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -41,7 +41,7 @@ const CreateTaskCard = ({
     <div
       className={cn(
         "relative  p-4 w-full max-w-xl",
-        !isPopup && "border bg-background  rounded-xl shadow",
+        !isPopup && "border bg-background rounded-xl shadow",
       )}
     >
       {/* Header */}
@@ -50,7 +50,7 @@ const CreateTaskCard = ({
           {data ? "Edit Card" : "Create New Card"}
         </h3>
         {!isPopup && (
-          <button onClick={onClose}>
+          <button type="button" className="cursor-pointer" onClick={onClose}>
             <X className="w-5 h-5" />
           </button>
         )}
@@ -80,6 +80,7 @@ const CreateTaskCard = ({
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline" className="flex-1">
+              <CalendarIcon />
               {form.due_date ? formatDate(form.due_date) : "Pick due date"}
             </Button>
           </PopoverTrigger>
@@ -136,7 +137,7 @@ const CreateTaskCard = ({
             <Button
               key={s.value}
               variant={form.status === s.value ? "default" : "outline"}
-              className="flex-1 flex gap-2"
+              className="flex-1 flex gap-1 !px-2"
               onClick={() => setForm({ ...form, status: s.value })}
             >
               <Icon className="w-4 h-4" />

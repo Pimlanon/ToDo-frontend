@@ -1,8 +1,11 @@
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { SquareCheckIcon } from "lucide-react";
 
 function Header() {
   return (
-    <header className="w-full h-18 px-6 flex items-center justify-between border-b">
+    <header className="w-full gap-4 h-18 px-6 flex items-center justify-start border-b">
+      
+      <SidebarTrigger />
       {/* Logo */}
       <div className="flex items-center gap-2 text-2xl font-bold tracking-wide">
         <SquareCheckIcon size={35} />

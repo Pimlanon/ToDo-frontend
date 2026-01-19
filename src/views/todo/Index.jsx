@@ -2,9 +2,9 @@ import React from "react";
 import KanbanColumn from "./components/KanbanColumn";
 import CreateTaskCard from "./components/CreateTaskCard";
 import ReadTaskCard from "./components/ReadTaskCard";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useIndexKanbanBoard } from "./hooks/index.hook";
 import ConnectionsPopover from "./components/ConnectionsPopover";
+import SkeletonColumn from "./components/SkeletonColumn";
 
 const TodoIndex = () => {
   const {
@@ -60,7 +60,7 @@ const TodoIndex = () => {
 
   return (
     <div className="h-full pb-10 flex flex-col">
-      <div className="font-bold text-3xl border ">
+      <div className="font-bold text-3xl">
         <input
           value={title || ""}
           onChange={(e) => setTitle(e.target.value)}
@@ -68,7 +68,7 @@ const TodoIndex = () => {
           placeholder="Untitled Page"
         />
       </div>
-      <div className="mt-3 flex justify-end">
+      <div className="mt-2 flex justify-end">
         <ConnectionsPopover connections={connections} pageId={pageId} />
       </div>
       <div className="mt-5 flex-1 overflow-x-auto overflow-y-hidden ">
@@ -94,22 +94,3 @@ const TodoIndex = () => {
 
 export default TodoIndex;
 
-const SkeletonCard = () => (
-  <div className="bg-background rounded-lg p-3 space-y-2 border">
-    <Skeleton className="h-22 w-3/4" />
-    <Skeleton className="h-4 w-full" />
-    <Skeleton className="h-4 w-full" />
-  </div>
-);
-
-const SkeletonColumn = () => (
-  <div className="min-w-[300px] h-full w-full bg-muted rounded-xl p-4 flex flex-col gap-3">
-    <div className="flex items-center gap-2 mb-2">
-      <Skeleton className="h-5 w-24" />
-    </div>
-
-    {[1, 2, 3, 4].map((i) => (
-      <SkeletonCard key={i} />
-    ))}
-  </div>
-);

@@ -61,7 +61,7 @@ const ReadTaskCard = ({
       {/* Description */}
       <Accordion type="single" collapsible className="mt-2">
         <AccordionItem value="desc">
-          <AccordionTrigger className="text-xs py-1">
+          <AccordionTrigger className="text-xs py-1 cursor-pointer">
             Description
           </AccordionTrigger>
           <AccordionContent className="text-xs text-muted-foreground whitespace-pre-wrap">
@@ -82,7 +82,7 @@ const ReadTaskCard = ({
                   over_due && "text-destructive!",
                 )}
               >
-                <Calendar size={18} className="text-primary" />
+                <Calendar size={18} className={cn("text-primary", over_due && "text-destructive!")} />
                 <span className="text-xs">
                   {due_date ? formatDate(due_date) : "-"}
                 </span>
@@ -129,7 +129,7 @@ const ReadTaskCard = ({
                 connections.map((c) => (
                   <div
                     key={c.id}
-                    className="flex items-start gap-3 py-2 border-b last:border-b-0"
+                    className="flex items-start gap-3 py-2 border-b !last:border-b-0"
                   >
                     <div className="flex-1">
                       <p className=" font-medium">{c.name}</p>

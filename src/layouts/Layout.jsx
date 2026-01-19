@@ -1,4 +1,4 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import React from "react";
 import AppSidebar from "./AppSidebar";
 import Header from "./Header";
@@ -13,7 +13,6 @@ const Layout = ({ children }) => {
           <Header />
 
           <main className="flex-1 p-6 min-h-0 ">
-            <SidebarTrigger />
             {children}
           </main>
         </div>
