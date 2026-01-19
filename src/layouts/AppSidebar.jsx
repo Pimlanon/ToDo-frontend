@@ -62,7 +62,7 @@ const AppSidebar = () => {
           <span className="font-semibold">{title}</span>
         </div>
         <span className="bg-white text-sidebar px-2 py-0.5 rounded-full text-xs">
-          {count}
+          {count || '0'}
         </span>
       </SidebarGroupLabel>
       {showDate && (
@@ -99,7 +99,7 @@ const AppSidebar = () => {
                 <Calendar className="w-5 h-5 text-white" />
                 <span className="font-semibold text-lg">Today</span>
               </div>
-              <span className="text-sm text-muted">{totalToday} tasks</span>
+              <span className="text-sm text-muted">{totalToday || '0'} tasks</span>
             </SidebarGroupLabel>
           </SidebarGroup>
 
@@ -128,7 +128,7 @@ const AppSidebar = () => {
                   Overdue
                 </span>
               </div>
-              <span className="text-sm text-red-300">{totalOverdue} tasks</span>
+              <span className="text-sm text-red-300">{totalOverdue || '0'} tasks</span>
             </SidebarGroupLabel>
           </SidebarGroup>
 
