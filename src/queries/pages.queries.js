@@ -32,7 +32,6 @@ export const useUpdatePageTitle = (pageId) => {
     onMutate: () => {},
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["page", pageId] }); // refetch data
       queryClient.invalidateQueries({ queryKey: ["pageList"] }); // refetch data
     },
 
