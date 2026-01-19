@@ -11,39 +11,24 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { KANBAN_STATUS } from "@/constants/kanbanStatus";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { useGetSidebarByPage } from "@/queries/tasks.queries";
+import { usePageStore } from "@/stores/usePageStore";
 
 const AppSidebar = () => {
-  // Mock data
-  const todayTasks = {
-    todo: [
-      { id: 1, title: "Review pull requests" },
-      { id: 2, title: "Update documentation" },
-      { id: 3, title: "Design new feature mockup" },
-    ],
-    in_progress: [
-      { id: 4, title: "Fix authentication bug" },
-      { id: 5, title: "Implement dark mode" },
-    ],
-  };
+  const pageId = usePageStore((state) => state.pageId);
+  const { data: sidebarData } = useGetSidebarByPage(pageId);
 
-  const overdueTasks = {
-    todo: [
-      { id: 6, title: "Submit quarterly report", due_date: "2026-01-15" },
-      { id: 7, title: "Client meeting prep", due_date: "2026-01-17" },
-    ],
-    in_progress: [
-      { id: 8, title: "Database migration", due_date: "2026-01-16" },
-      { id: 9, title: "Security audit", due_date: "2026-01-18" },
-    ],
-  };
+  const todayTasks = sidebarData?.today;
+  const overdueTasks = sidebarData?.overdue;
 
   const TaskItem = ({ task, showDate = false }) => (
-    <SidebarMenuItem>
-      <div className="px-2 py-2">
-        <div className="flex flex-col w-full gap-1">
-          <span className="text-white  text-sm truncate">・ {task.title}</span>
+    <SidebarMenuItem className="border-b-1 border-white/30 last:border-b-0">
+      <div className="px-2 py-2 ">
+        <div className="flex flex-col w-full gap-1 ">
+          <span className="text-white font-light text-sm truncate">
+            ・ {task.title}
+          </span>
           {showDate && (
             <span
               className={cn(
@@ -63,15 +48,21 @@ const AppSidebar = () => {
     </SidebarMenuItem>
   );
 
-  const StatusGroup = ({ title, tasks, icon: Icon, showDate = false }) => (
+  const StatusGroup = ({
+    title,
+    tasks,
+    icon: Icon,
+    count,
+    showDate = false,
+  }) => (
     <SidebarGroup>
       <SidebarGroupLabel className="flex items-center justify-between">
         <div className="text-sm flex items-center gap-2">
           <Icon size={18} />
-          <span>{title}</span>
+          <span className="font-semibold">{title}</span>
         </div>
         <span className="bg-white text-sidebar px-2 py-0.5 rounded-full text-xs">
-          {tasks.length}
+          {count}
         </span>
       </SidebarGroupLabel>
       {showDate && (
@@ -81,74 +72,82 @@ const AppSidebar = () => {
       )}
       <SidebarGroupContent>
         <SidebarMenu>
-          {tasks.map((task) => (
-            <TaskItem key={task.id} task={task} showDate={showDate} />
+          {tasks?.map((task) => (
+            <TaskItem key={task?.id} task={task} showDate={showDate} />
           ))}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
   );
 
-  const totalToday = todayTasks.todo.length + todayTasks.in_progress.length;
+  const totalToday = todayTasks?.todo?.count + todayTasks?.in_progress?.count;
   const totalOverdue =
-    overdueTasks.todo.length + overdueTasks.in_progress.length;
+    overdueTasks?.todo?.count + overdueTasks?.in_progress?.count;
 
   return (
     <Sidebar>
-      <SidebarHeader className="border-b px-4 py-3">
+      <SidebarHeader className="border-b px-4 py-3 flex w-full justify-center items-center">
         <h2 className="text-xl font-semibold text-white">Task Overview</h2>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="p-3 ">
         {/* Today Task */}
-        <SidebarGroup>
-          <SidebarGroupLabel className="mt-3 text-base flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-white" />
-              <span className="font-semibold">Today</span>
-            </div>
-            <span className="text-sm text-muted">{totalToday} tasks</span>
-          </SidebarGroupLabel>
-          <Separator />
-        </SidebarGroup>
+        <div className="bg-muted-foreground/30 rounded-md">
+          <SidebarGroup>
+            <SidebarGroupLabel className="mt-6 h-0  text-base flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-white" />
+                <span className="font-semibold text-lg">Today</span>
+              </div>
+              <span className="text-sm text-muted">{totalToday} tasks</span>
+            </SidebarGroupLabel>
+          </SidebarGroup>
 
-        <StatusGroup
-          title="To Do"
-          tasks={todayTasks.todo}
-          icon={KANBAN_STATUS[0].icon}
-        />
+          <StatusGroup
+            title="To Do"
+            tasks={todayTasks?.todo?.items}
+            icon={KANBAN_STATUS[0].icon}
+            count={todayTasks?.todo?.count}
+          />
 
-        <StatusGroup
-          title="In Progress"
-          tasks={todayTasks.in_progress}
-          icon={KANBAN_STATUS[1].icon}
-        />
+          <StatusGroup
+            title="In Progress"
+            tasks={todayTasks?.in_progress?.items}
+            icon={KANBAN_STATUS[1].icon}
+            count={todayTasks?.in_progress?.count}
+          />
+        </div>
 
         {/* Overdue Tasks */}
-        <SidebarGroup className="mt-6">
-          <SidebarGroupLabel className="text-base flex items-center justify-between py-3 text-red-900">
-            <div className="flex items-center gap-2">
-              <Siren className="w-5 h-5 text-red-300" />
-              <span className="font-semibold text-red-300">Overdue</span>
-            </div>
-            <span className="text-sm text-red-300">{totalOverdue} tasks</span>
-          </SidebarGroupLabel>
-          <Separator />
-        </SidebarGroup>
+        <div className="mt-6 bg-muted-foreground/30 rounded-md">
+          <SidebarGroup className="mt-6">
+            <SidebarGroupLabel className="h-0 text-base flex items-center justify-between  text-red-900">
+              <div className="flex items-center gap-2">
+                <Siren className="w-5 h-5 text-red-300" />
+                <span className="font-semibold text-lg text-red-300">
+                  Overdue
+                </span>
+              </div>
+              <span className="text-sm text-red-300">{totalOverdue} tasks</span>
+            </SidebarGroupLabel>
+          </SidebarGroup>
 
-        <StatusGroup
-          title="To Do"
-          tasks={overdueTasks.todo}
-          icon={KANBAN_STATUS[0].icon}
-          showDate={true}
-        />
+          <StatusGroup
+            title="To Do"
+            tasks={overdueTasks?.todo?.items}
+            icon={KANBAN_STATUS[0].icon}
+            showDate={true}
+            count={overdueTasks?.todo?.count}
+          />
 
-        <StatusGroup
-          title="In Progress"
-          tasks={overdueTasks.in_progress}
-          icon={KANBAN_STATUS[1].icon}
-          showDate={true}
-        />
+          <StatusGroup
+            title="In Progress"
+            tasks={overdueTasks?.in_progress?.items}
+            icon={KANBAN_STATUS[1].icon}
+            showDate={true}
+            count={overdueTasks?.in_progress?.count}
+          />
+        </div>
       </SidebarContent>
     </Sidebar>
   );
