@@ -1,42 +1,47 @@
-import {
-  AlertDialog,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogFooter,
-  AlertDialogCancel,
-  AlertDialogAction,
-} from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { COLORS } from "@/constants/connectionColor";
 import { useAddConnectionDialog } from "../../hooks/addConnectionDialog.hook";
-import { AlertDialogDescription } from "@radix-ui/react-alert-dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export function AddConnectionDialog({ onSave, pageId }) {
   const { form, setForm, errors, open, setOpen, handleSave, resetForm } =
     useAddConnectionDialog({ onSave, pageId });
 
   return (
-    <AlertDialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(isOpen) => {
+        setOpen(isOpen);
+        if (!isOpen) resetForm();
+      }}
+    >
       {/* Add new connection button */}
-      <AlertDialogTrigger asChild>
+      <DialogTrigger asChild>
         <Button variant="link" size="sm" className="flex gap-1">
           <Plus size={14} />
           <span className="text-xs font-semibold">Add more</span>
         </Button>
-      </AlertDialogTrigger>
+      </DialogTrigger>
 
-      <AlertDialogContent>
+      <DialogContent>
         {/* Header */}
-        <AlertDialogHeader>
-          <AlertDialogTitle>Add new connection</AlertDialogTitle>
-          <AlertDialogDescription>
+        <DialogHeader>
+          <DialogTitle>Add new connection</DialogTitle>
+          <DialogDescription>
             Enter the name, email, and choose a color for the new connection.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
+          </DialogDescription>
+        </DialogHeader>
 
         <div className="space-y-3">
           {/* Name */}
@@ -76,18 +81,23 @@ export function AddConnectionDialog({ onSave, pageId }) {
         </div>
 
         {/* Footer Button */}
-        <AlertDialogFooter>
-          <AlertDialogCancel onClick={resetForm}>Cancel</AlertDialogCancel>
-          <AlertDialogAction
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline" onClick={resetForm}>
+              Cancel
+            </Button>
+          </DialogClose>
+
+          <Button
             onClick={(e) => {
-              e.preventDefault(); // stop auto close
+              e.preventDefault();
               handleSave();
             }}
           >
             Confirm
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
