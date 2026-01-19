@@ -21,11 +21,12 @@ const ConfirmDialog = ({ id, keyword, pageId }) => {
 
   const onDelete = () => {
     if (keyword === "task") deleteTask.mutate(id);
-    if (keyword === "connection") deleteConnection.mutate(id)
+    if (keyword === "connection") deleteConnection.mutate(id);
   };
 
   return (
     <AlertDialog>
+      {/* Delete button */}
       <AlertDialogTrigger asChild>
         {keyword === "task" ? (
           <Button variant="secondary" className="w-full mt-3">
@@ -42,6 +43,7 @@ const ConfirmDialog = ({ id, keyword, pageId }) => {
       </AlertDialogTrigger>
 
       <AlertDialogContent>
+        {/* Header */}
         <AlertDialogHeader>
           <AlertDialogTitle>Delete this {keyword}?</AlertDialogTitle>
           <AlertDialogDescription>
@@ -49,6 +51,7 @@ const ConfirmDialog = ({ id, keyword, pageId }) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
 
+        {/* Footer Button */}
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction

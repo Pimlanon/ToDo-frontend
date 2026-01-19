@@ -21,6 +21,7 @@ export function AddConnectionDialog({ onSave, pageId }) {
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
+      {/* Add new connection button */}
       <AlertDialogTrigger asChild>
         <Button variant="link" size="sm" className="flex gap-1">
           <Plus size={14} />
@@ -29,6 +30,7 @@ export function AddConnectionDialog({ onSave, pageId }) {
       </AlertDialogTrigger>
 
       <AlertDialogContent>
+        {/* Header */}
         <AlertDialogHeader>
           <AlertDialogTitle>Add new connection</AlertDialogTitle>
           <AlertDialogDescription>
@@ -37,6 +39,7 @@ export function AddConnectionDialog({ onSave, pageId }) {
         </AlertDialogHeader>
 
         <div className="space-y-3">
+          {/* Name */}
           <Input
             placeholder="Name"
             value={form.name}
@@ -46,6 +49,7 @@ export function AddConnectionDialog({ onSave, pageId }) {
             }
           />
 
+          {/* Email */}
           <Input
             placeholder="Email"
             value={form.email}
@@ -55,6 +59,7 @@ export function AddConnectionDialog({ onSave, pageId }) {
             }
           />
 
+          {/* Color */}
           <div className="flex gap-2">
             {COLORS.map((c) => (
               <button
@@ -70,6 +75,7 @@ export function AddConnectionDialog({ onSave, pageId }) {
           </div>
         </div>
 
+        {/* Footer Button */}
         <AlertDialogFooter>
           <AlertDialogCancel onClick={resetForm}>Cancel</AlertDialogCancel>
           <AlertDialogAction

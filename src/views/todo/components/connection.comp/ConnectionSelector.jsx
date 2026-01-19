@@ -1,11 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 
-export function ConnectionSelector({
-  connections,
-  selectedIds,
-  onChange,
-}) {
+export function ConnectionSelector({ connections, selectedIds, onChange }) {
   return (
     <div className="mb-3">
       <p className="text-sm font-medium mb-2">Assign Connections</p>
@@ -38,7 +34,6 @@ export function ConnectionSelector({
       <div className="border rounded-md max-h-40 overflow-y-auto kanban-scroll">
         {connections?.map((c) => {
           const checked = selectedIds?.includes(c.id);
-
           return (
             <div
               key={c.id}
@@ -46,7 +41,7 @@ export function ConnectionSelector({
                 onChange(
                   checked
                     ? selectedIds.filter((x) => x !== c.id)
-                    : [...selectedIds, c.id]
+                    : [...selectedIds, c.id],
                 )
               }
               className="flex items-center justify-between px-3 py-2 cursor-pointer hover:bg-muted"
@@ -65,9 +60,7 @@ export function ConnectionSelector({
               </div>
 
               {checked && <Check className="w-4 h-4 text-primary" />}
-            </div
-            
-            >
+            </div>
           );
         })}
       </div>
