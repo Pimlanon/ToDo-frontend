@@ -35,7 +35,7 @@ export function ConnectionSelector({
       </div>
 
       {/* Select List */}
-      <div className="border rounded-md max-h-40 overflow-y-auto">
+      <div className="border rounded-md max-h-40 overflow-y-auto kanban-scroll">
         {connections?.map((c) => {
           const checked = selectedIds?.includes(c.id);
 

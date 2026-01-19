@@ -26,13 +26,12 @@ const ReadTaskCard = ({
   connections,
   onClick,
 }) => {
-  console.log("connections", connections);
   return (
-    <div className="w-full max-w-sm bg-background border rounded-xl p-6 shadow-sm">
+    <div className="w-full max-w-xl xl:space-y-5  bg-background border rounded-xl p-6 shadow-sm">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div className="flex gap-3 ">
-          {over_due && <Siren className="text-red-600" />}
+          {over_due && <Siren className="text-destructive" />}
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -80,10 +79,10 @@ const ReadTaskCard = ({
               <div
                 className={cn(
                   "flex gap-3 items-center text-muted-foreground",
-                  over_due && "text-red-600!",
+                  over_due && "text-destructive!",
                 )}
               >
-                <Calendar size={18} />
+                <Calendar size={18} className="text-primary" />
                 <span className="text-xs">
                   {due_date ? formatDate(due_date) : "-"}
                 </span>
@@ -97,7 +96,7 @@ const ReadTaskCard = ({
           {/* Priority */}
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="flex  gap-3 justify-center items-center">
+              <div className="flex gap-3 justify-center items-center">
                 <Flag
                   size={18}
                   className={cn(

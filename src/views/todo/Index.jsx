@@ -59,33 +59,34 @@ const TodoIndex = () => {
   };
 
   return (
-    <div className="h-full pb-20">
-      <div className="font-bold text-3xl border">
+    <div className="h-full pb-10 flex flex-col">
+      <div className="font-bold text-3xl border ">
         <input
           value={title || ""}
           onChange={(e) => setTitle(e.target.value)}
-          className="text-3xl font-bold bg-transparent border-none outline-none focus:ring-0 truncate"
+          className="w-full  xl:w-1/2 text-3xl font-bold bg-transparent border-none outline-none focus:ring-0 truncate"
           placeholder="Untitled Page"
         />
       </div>
       <div className="mt-3 flex justify-end">
-        {/* <p>You have 3 connections</p> */}
         <ConnectionsPopover connections={connections} pageId={pageId} />
       </div>
-      <div className="mt-5 flex gap-4 min-w-max h-full">
-        {isTaskLoading ? (
-          <>
-            <SkeletonColumn />
-            <SkeletonColumn />
-            <SkeletonColumn />
-          </>
-        ) : (
-          <>
-            {renderColumn("todo")}
-            {renderColumn("in_progress")}
-            {renderColumn("done")}
-          </>
-        )}
+      <div className="mt-5 flex-1 overflow-x-auto overflow-y-hidden ">
+        <div className="flex gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 min-w-max h-full">
+          {isTaskLoading ? (
+            <>
+              <SkeletonColumn />
+              <SkeletonColumn />
+              <SkeletonColumn />
+            </>
+          ) : (
+            <>
+              {renderColumn("todo")}
+              {renderColumn("in_progress")}
+              {renderColumn("done")}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ export function AddConnectionDialog({ onSave, pageId }) {
                 type="button"
                 onClick={() => setForm((prev) => ({ ...prev, color: c }))}
                 className={`w-8 h-8 rounded-full border-2 ${
-                  form.color === c ? "border-black" : "border-transparent"
+                  form.color === c ? "border-primary" : "border-transparent"
                 }`}
                 style={{ backgroundColor: c }}
               />

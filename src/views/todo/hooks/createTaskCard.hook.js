@@ -41,6 +41,7 @@ export function useCreateTaskCard({ data, onSave, status, pageId, onClose }) {
 
   const priorityValue = form.priority ? Number(form.priority) : null;
   const priorityConfig = priorityValue ? PRIORITY[priorityValue] : null;
+  
   return {
     form,
     setForm,

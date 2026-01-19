@@ -36,13 +36,12 @@ const CreateTaskCard = ({
 }) => {
   const { form, setForm, errors, handleSave, priorityConfig, priorityValue } =
     useCreateTaskCard({ data, onSave, status, pageId, onClose });
-  console.log("data", data);
-  console.log("connectionsList", connectionsList);
+
   return (
     <div
       className={cn(
-        "relative  p-4 w-full",
-        !isPopup && "max-w-sm border bg-background  rounded-xl shadow",
+        "relative  p-4 w-full max-w-xl",
+        !isPopup && "border bg-background  rounded-xl shadow",
       )}
     >
       {/* Header */}
@@ -117,7 +116,7 @@ const CreateTaskCard = ({
           <SelectContent>
             {[1, 2, 3].map((p) => (
               <SelectItem key={p} value={String(p)}>
-                <div className={cn("flex items-center gap-2")}>
+                <div className={cn("flex items-center text-primary gap-2")}>
                   <Flag
                     className={cn("w-4 h-4 fill-current", PRIORITY[p].color)}
                   />
@@ -161,6 +160,7 @@ const CreateTaskCard = ({
         Submit
       </Button>
 
+      {/* Delete Button */}
       {data?.title && <ConfirmDialog id={data?.id} keyword={"task"} />}
     </div>
   );

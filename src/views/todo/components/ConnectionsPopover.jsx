@@ -7,20 +7,22 @@ import { Button } from "@/components/ui/button";
 import ConfirmDialog from "./ConfirmDialog";
 import { AddConnectionDialog } from "./AddConnectionDialog";
 import { useCreateConnection } from "@/queries/connections.queries";
+import { Users } from "lucide-react";
 
 export default function ConnectionsPopover({ connections, pageId }) {
   const createConnection = useCreateConnection(pageId);
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" className="cursor-pointer text-md">
+        <Button variant="default" className="cursor-pointer text-sm">
+          <Users />
           You have {connections?.count ?? "0"} connections
         </Button>
       </PopoverTrigger>
 
       <PopoverContent className="w-72 p-0 mr-4">
         <div className="flex justify-between items-center pl-3 pr-2 pt-2">
-          <p className="text-sm font-semibold">Connections</p>
+          <p className="text-sm font-semibold text-primary">Connections</p>
           <AddConnectionDialog
             pageId={pageId}
             onSave={(data) => createConnection.mutate(data)}
@@ -28,7 +30,7 @@ export default function ConnectionsPopover({ connections, pageId }) {
         </div>
 
         {/* Connection List*/}
-        <div className="max-h-56 overflow-y-auto p-3">
+        <div className="max-h-56 overflow-y-auto p-3 kanban-scroll">
           {connections?.items?.length ? (
             connections.items.map((c) => (
               <div
@@ -46,7 +48,7 @@ export default function ConnectionsPopover({ connections, pageId }) {
 
                 {/* Info */}
                 <div className="flex-1">
-                  <p className="text-sm font-medium">{c.name}</p>
+                  <p className="text-sm font-medium text-primary">{c.name}</p>
                   <p className="text-xs text-muted-foreground">{c.email}</p>
                 </div>
 

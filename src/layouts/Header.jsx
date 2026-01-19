@@ -1,32 +1,13 @@
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { SquareCheckIcon } from "lucide-react";
 
 function Header() {
   return (
     <header className="w-full h-18 px-6 flex items-center justify-between border-b">
       {/* Logo */}
-      <div className="text-2xl font-bold tracking-wide">To-DO</div>
-
-      {/* User avatar + logout */}
-      <DropdownMenu>
-        <DropdownMenuTrigger className="outline-none">
-          <Avatar className="cursor-pointer">
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>U</AvatarFallback>
-          </Avatar>
-        </DropdownMenuTrigger>
-
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem className="text-red-400 cursor-pointer">
-            Logout
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <div className="flex items-center gap-2 text-2xl font-bold tracking-wide">
+        <SquareCheckIcon size={35} />
+        To-DO
+        </div>
     </header>
   );
 }

@@ -34,7 +34,7 @@ const ConfirmDialog = ({ id, keyword, pageId }) => {
         ) : (
           <button
             type="button"
-            className="text-muted-foreground hover:text-red-500 cursor-pointer"
+            className="text-muted-foreground  cursor-pointer"
           >
             <X size={14} />
           </button>
@@ -53,7 +53,7 @@ const ConfirmDialog = ({ id, keyword, pageId }) => {
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={onDelete}
-            className="bg-red-400 hover:bg-red-500"
+            className="bg-secondary text-secondary-foreground hover:bg-secondary-foreground/20"
           >
             Confirm Delete
           </AlertDialogAction>
