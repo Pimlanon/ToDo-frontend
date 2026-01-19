@@ -5,7 +5,9 @@ function Header() {
   return (
     <header className="w-full gap-4 h-18 px-6 flex items-center justify-start border-b">
       
-      <SidebarTrigger />
+      <div className="inline 2xl:hidden">
+        <SidebarTrigger />
+        </div>
       {/* Logo */}
       <div className="flex items-center gap-2 text-2xl font-bold tracking-wide">
         <SquareCheckIcon size={35} />
