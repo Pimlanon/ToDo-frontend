@@ -30,12 +30,12 @@ const ReadTaskCard = ({
     <div className="w-full max-w-xl xl:space-y-5  bg-background border rounded-xl p-6 shadow-sm">
       {/* Header */}
       <div className="flex justify-between items-start">
-        <div className="flex gap-3 ">
+        <div className="flex gap-3 w-full">
           {over_due && <Siren className="text-destructive" />}
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <h3 className="font-semibold text-xl leading-tight truncate max-w-[260px] cursor-default">
+                <h3 className="font-semibold text-xl leading-tight truncate max-w-[260px] 2xl:max-w-[400px] cursor-default">
                   {title}
                 </h3>
               </TooltipTrigger>

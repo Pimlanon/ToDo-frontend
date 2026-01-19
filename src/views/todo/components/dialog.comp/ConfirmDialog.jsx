@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 
 const ConfirmDialog = ({ id, keyword, pageId }) => {
-  const deleteTask = useDeleteTask("055e1675c8e577bf231a0f4d26314cda"); // userId
+  const deleteTask = useDeleteTask(pageId);
   const deleteConnection = useDeleteConnection(pageId);
 
   const onDelete = () => {

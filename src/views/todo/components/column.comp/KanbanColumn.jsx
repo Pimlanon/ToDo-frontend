@@ -3,7 +3,7 @@ import { KANBAN_STATUS } from "@/constants/kanbanStatus";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import CreateTaskCard from "./CreateTaskCard";
+import CreateTaskCard from "../card.comp/CreateTaskCard";
 import { useCreateTask } from "@/queries/tasks.queries";
 
 const KanbanColumn = ({
@@ -17,7 +17,7 @@ const KanbanColumn = ({
   const status = KANBAN_STATUS.find((s) => s.key === statusKey);
   const Icon = status?.icon;
 
-  const createTaskMutation = useCreateTask("055e1675c8e577bf231a0f4d26314cda");
+  const createTaskMutation = useCreateTask(pageId);
 
   return (
     <div className="min-w-[300px] h-full w-full bg-muted rounded-xl p-4 xl:p-8 flex flex-col">

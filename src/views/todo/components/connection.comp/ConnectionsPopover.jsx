@@ -4,7 +4,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import ConfirmDialog from "./ConfirmDialog";
+import ConfirmDialog from "../dialog.comp/ConfirmDialog";
 import { AddConnectionDialog } from "./AddConnectionDialog";
 import { useCreateConnection } from "@/queries/connections.queries";
 import { Users } from "lucide-react";

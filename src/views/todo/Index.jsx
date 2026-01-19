@@ -1,10 +1,11 @@
 import React from "react";
-import KanbanColumn from "./components/KanbanColumn";
-import CreateTaskCard from "./components/CreateTaskCard";
-import ReadTaskCard from "./components/ReadTaskCard";
+import KanbanColumn from "./components/column.comp/KanbanColumn";
+import CreateTaskCard from "./components/card.comp/CreateTaskCard";
+import ReadTaskCard from "./components/card.comp/ReadTaskCard";
 import { useIndexKanbanBoard } from "./hooks/index.hook";
-import ConnectionsPopover from "./components/ConnectionsPopover";
-import SkeletonColumn from "./components/SkeletonColumn";
+import ConnectionsPopover from "./components/connection.comp/ConnectionsPopover";
+import SkeletonColumn from "./components/column.comp/SkeletonColumn";
+import { Pencil } from "lucide-react";
 
 const TodoIndex = () => {
   const {
@@ -17,7 +18,7 @@ const TodoIndex = () => {
     editTaskMutation,
     isTaskLoading,
     connections,
-  } = useIndexKanbanBoard("055e1675c8e577bf231a0f4d26314cda"); //userId
+  } = useIndexKanbanBoard();
 
   const renderColumn = (columnKey) => {
     const column = board[columnKey];
@@ -60,7 +61,9 @@ const TodoIndex = () => {
 
   return (
     <div className="h-full pb-10 flex flex-col">
-      <div className="font-bold text-3xl">
+      <div className="font-bold text-3xl flex gap-2 items-center">
+        <Pencil />
+
         <input
           value={title || ""}
           onChange={(e) => setTitle(e.target.value)}
@@ -93,4 +96,3 @@ const TodoIndex = () => {
 };
 
 export default TodoIndex;
-

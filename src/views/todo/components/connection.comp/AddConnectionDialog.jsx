@@ -12,11 +12,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { COLORS } from "@/constants/connectionColor";
-import { useAddConnectionDialog } from "../hooks/addConnectionDialog.hook";
+import { useAddConnectionDialog } from "../../hooks/addConnectionDialog.hook";
+import { AlertDialogDescription } from "@radix-ui/react-alert-dialog";
 
 export function AddConnectionDialog({ onSave, pageId }) {
   const { form, setForm, errors, open, setOpen, handleSave, resetForm } =
-    useAddConnectionDialog({onSave, pageId});
+    useAddConnectionDialog({ onSave, pageId });
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -30,6 +31,9 @@ export function AddConnectionDialog({ onSave, pageId }) {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Add new connection</AlertDialogTitle>
+          <AlertDialogDescription>
+            Enter the name, email, and choose a color for the new connection.
+          </AlertDialogDescription>
         </AlertDialogHeader>
 
         <div className="space-y-3">

@@ -19,11 +19,10 @@ import {
 } from "@/components/ui/select";
 import { PRIORITY } from "@/constants/priority";
 import { cn } from "@/lib/utils";
-import ConfirmDialog from "./ConfirmDialog";
-import { useCreateTaskCard } from "../hooks/createTaskCard.hook";
+import ConfirmDialog from "../dialog.comp/ConfirmDialog";
+import { useCreateTaskCard } from "../../hooks/createTaskCard.hook";
 import { formatDate } from "@/utils/dateFormat";
-import { Badge } from "@/components/ui/badge";
-import { ConnectionSelector } from "./ConnectionSelector";
+import { ConnectionSelector } from "../connection.comp/ConnectionSelector";
 
 const CreateTaskCard = ({
   data,
@@ -162,7 +161,9 @@ const CreateTaskCard = ({
       </Button>
 
       {/* Delete Button */}
-      {data?.title && <ConfirmDialog id={data?.id} keyword={"task"} />}
+      {data?.title && (
+        <ConfirmDialog id={data?.id} keyword={"task"} pageId={pageId} />
+      )}
     </div>
   );
 };
