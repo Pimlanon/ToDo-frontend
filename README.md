@@ -24,6 +24,30 @@ It connects to a Flask + Turso backend.
 
 ---
 
+## Preview
+<img width="2095" height="984" alt="image" src="https://github.com/user-attachments/assets/be3d6a2c-53b1-46c6-96d6-3fdf210da0d9" />
+
+---
+
+## Website
+[https://to-do-frontend-dun.vercel.app/](https://to-do-frontend-dun.vercel.app/)
+
+---
+## Important Note
+
+Some tasks have the title "(JSON)".
+These tasks are mock data from the backend and are stored in a separate part of the database.
+
+Because of this:
+
+**They cannot be edited**
+
+**They cannot be deleted**
+
+They are read-only and used only for testing / demonstration purposes.
+
+---
+
 ## Tech Stack
 
 * React (Vite)
