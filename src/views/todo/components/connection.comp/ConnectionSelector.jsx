@@ -48,7 +48,7 @@ export function ConnectionSelector({ connections, selectedIds, onChange }) {
             >
               <div className="flex items-center gap-2">
                 <span
-                  className="w-6 h-6 rounded-full text-xs flex items-center justify-center text-white"
+                  className="w-6 h-6 rounded-full text-[11px] md:text-xs flex items-center justify-center text-white"
                   style={{ backgroundColor: c.color }}
                 >
                   {c.name[0].toUpperCase()}

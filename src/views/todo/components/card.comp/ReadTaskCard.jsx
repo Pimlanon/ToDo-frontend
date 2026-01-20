@@ -35,7 +35,7 @@ const ReadTaskCard = ({
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <h3 className="font-semibold text-xl leading-tight truncate max-w-[260px] 2xl:max-w-[400px] cursor-default">
+                <h3 className="font-semibold text-lg xl:text-xl leading-tight truncate max-w-[260px] 2xl:max-w-[400px] cursor-default">
                   {title}
                 </h3>
               </TooltipTrigger>

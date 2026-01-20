@@ -67,7 +67,7 @@ const TodoIndex = () => {
         <input
           value={title || ""}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full  xl:w-1/2 text-3xl font-bold bg-transparent border-none outline-none focus:ring-0 truncate"
+          className="w-full  xl:w-1/2 text-xl lg:text-2xl xl:text-3xl font-bold bg-transparent border-none outline-none focus:ring-0 truncate"
           placeholder="Untitled Page"
         />
       </div>

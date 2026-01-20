@@ -45,7 +45,7 @@ const CreateTaskCard = ({
     >
       {/* Header */}
       <div className="flex justify-between items-center mb-4 ">
-        <h3 className="text-lg font-semibold">
+        <h3 className="text-base xl:text-lg font-semibold">
           {data ? "Edit Card" : "Create New Card"}
         </h3>
         {!isPopup && (
@@ -59,7 +59,7 @@ const CreateTaskCard = ({
       <Input
         placeholder="Title"
         className={cn(
-          "mb-3",
+          "mb-3 text-sm md:text-base",
           errors.title && "border-red-500 focus-visible:ring-red-500",
         )}
         value={form.title}
@@ -69,7 +69,7 @@ const CreateTaskCard = ({
       {/* Description */}
       <Textarea
         placeholder="Description"
-        className="mb-3"
+        className="mb-3 text-sm md:text-base"
         value={form.description}
         onChange={(e) => setForm({ ...form, description: e.target.value })}
       />
@@ -107,7 +107,7 @@ const CreateTaskCard = ({
                       priorityConfig?.color,
                     )}
                   />
-                  <span>{priorityConfig?.label}</span>
+                  <span className="text-sm xl:text-base">{priorityConfig?.label}</span>
                 </div>
               )}
             </SelectValue>
@@ -140,7 +140,7 @@ const CreateTaskCard = ({
               onClick={() => setForm({ ...form, status: s.value })}
             >
               <Icon className="w-4 h-4" />
-              <span className="hidden xl:inline">{s.label}</span>
+              <span className="hidden xl:inline text-sm 2xl:text-base">{s.label}</span>
             </Button>
           );
         })}

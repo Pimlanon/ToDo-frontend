@@ -57,9 +57,9 @@ const AppSidebar = () => {
   }) => (
     <SidebarGroup>
       <SidebarGroupLabel className="flex items-center justify-between">
-        <div className="text-sm flex items-center gap-2">
+        <div className="flex items-center gap-2">
           <Icon size={18} />
-          <span className="font-semibold">{title}</span>
+          <span className="text-sm md:text-base font-semibold">{title}</span>
         </div>
         <span className="bg-white text-sidebar px-2 py-0.5 rounded-full text-xs">
           {count || '0'}
@@ -87,19 +87,19 @@ const AppSidebar = () => {
   return (
     <Sidebar>
       <SidebarHeader className="border-b px-4 py-3 flex w-full justify-center items-center">
-        <h2 className="text-xl font-semibold text-white">Task Overview</h2>
+        <h2 className="text-lg md:text-xl font-semibold text-white">Task Overview</h2>
       </SidebarHeader>
 
       <SidebarContent className="p-3 ">
         {/* Today Task */}
         <div className="bg-muted-foreground/30 rounded-md">
           <SidebarGroup>
-            <SidebarGroupLabel className="mt-6 h-0  text-base flex items-center justify-between">
+            <SidebarGroupLabel className="mt-6 h-0 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-white" />
-                <span className="font-semibold text-lg">Today</span>
+                <span className="font-semibold text-base md:text-lg">Today</span>
               </div>
-              <span className="text-sm text-muted">{totalToday || '0'} tasks</span>
+              <span className="text-xs md:text-sm text-muted">{totalToday || '0'} tasks</span>
             </SidebarGroupLabel>
           </SidebarGroup>
 
@@ -121,14 +121,14 @@ const AppSidebar = () => {
         {/* Overdue Tasks */}
         <div className="mt-6 bg-muted-foreground/30 rounded-md">
           <SidebarGroup className="mt-6">
-            <SidebarGroupLabel className="h-0 text-base flex items-center justify-between  text-red-900">
+            <SidebarGroupLabel className="h-0 flex items-center justify-between  text-red-900">
               <div className="flex items-center gap-2">
                 <Siren className="w-5 h-5 text-red-300" />
-                <span className="font-semibold text-lg text-red-300">
+                <span className="font-semibold text-base md:text-lg text-red-300">
                   Overdue
                 </span>
               </div>
-              <span className="text-sm text-red-300">{totalOverdue || '0'} tasks</span>
+              <span className="text-xs md:text-sm text-red-300">{totalOverdue || '0'} tasks</span>
             </SidebarGroupLabel>
           </SidebarGroup>
 

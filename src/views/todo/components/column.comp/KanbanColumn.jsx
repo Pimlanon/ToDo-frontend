@@ -23,10 +23,10 @@ const KanbanColumn = ({
     <div className="min-w-[300px] h-full w-full bg-muted rounded-xl p-4 xl:p-8 flex flex-col">
       {/* Header  */}
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold  flex items-center gap-2">
+        <h2 className="text-lg xl:text-xl font-semibold  flex items-center gap-2">
           {Icon && <Icon className="w-5 h-5" />}
           {status?.label}{" "}
-          <span className="text-muted-foreground">({count})</span>
+          <span className="text-base xl:text-lg text-muted-foreground">({count})</span>
         </h2>
 
         <Dialog open={openCreate} onOpenChange={setOpenCreate}>

@@ -13,6 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 
 export function AddConnectionDialog({ onSave, pageId }) {
   const { form, setForm, errors, open, setOpen, handleSave, resetForm } =
@@ -48,7 +49,10 @@ export function AddConnectionDialog({ onSave, pageId }) {
           <Input
             placeholder="Name"
             value={form.name}
-            className={errors.name ? "border-red-500" : ""}
+            className={cn(
+              "text-sm md:text-base",
+              errors.name && "border-red-500",
+            )}
             onChange={(e) =>
               setForm((prev) => ({ ...prev, name: e.target.value }))
             }
@@ -58,7 +62,10 @@ export function AddConnectionDialog({ onSave, pageId }) {
           <Input
             placeholder="Email"
             value={form.email}
-            className={errors.email ? "border-red-500" : ""}
+            className={cn(
+              "text-sm md:text-base",
+              errors.email && "border-red-500",
+            )}
             onChange={(e) =>
               setForm((prev) => ({ ...prev, email: e.target.value }))
             }
@@ -71,9 +78,10 @@ export function AddConnectionDialog({ onSave, pageId }) {
                 key={c}
                 type="button"
                 onClick={() => setForm((prev) => ({ ...prev, color: c }))}
-                className={`w-8 h-8 rounded-full border-2 ${
-                  form.color === c ? "border-primary" : "border-transparent"
-                }`}
+                className={cn(
+                  "w-8 h-8 rounded-full border-2",
+                  form.color === c ? "border-primary" : "border-transparent",
+                )}
                 style={{ backgroundColor: c }}
               />
             ))}
