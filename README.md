@@ -115,7 +115,7 @@ yarn install
 ### 3. Create `.env` file
 
 ```env
-VITE_BASE_URL_BACKEND=http://localhost:5000
+VITE_BASE_URL_BACKEND=
 ```
 
 (Replace with deployed backend URL in production)
