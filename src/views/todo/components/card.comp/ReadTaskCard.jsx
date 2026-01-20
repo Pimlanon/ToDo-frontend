@@ -40,7 +40,7 @@ const ReadTaskCard = ({
                 </h3>
               </TooltipTrigger>
               <TooltipContent>
-                <p className="max-w-xs break-words">{title}</p>
+                <p className="max-w-xs break-words text-xs">{title}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -129,16 +129,16 @@ const ReadTaskCard = ({
                 connections.map((c) => (
                   <div
                     key={c.id}
-                    className="flex items-start gap-3 py-2 border-b !last:border-b-0"
+                    className="text-xs flex items-start gap-3 py-2 border-b !last:border-b-0"
                   >
                     <div className="flex-1">
-                      <p className=" font-medium">{c.name}</p>
+                      <p className="text-xs font-medium">{c.name}</p>
                       <p className="text-xs text-muted-foreground">{c.email}</p>
                     </div>
                   </div>
                 ))
               ) : (
-                <p className="">No connections</p>
+                <p className="text-xs">No connections</p>
               )}
             </TooltipContent>
           </Tooltip>

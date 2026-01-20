@@ -59,7 +59,7 @@ const CreateTaskCard = ({
       <Input
         placeholder="Title"
         className={cn(
-          "mb-3 text-sm md:text-base",
+          "mb-3 text-sm",
           errors.title && "border-red-500 focus-visible:ring-red-500",
         )}
         value={form.title}
@@ -69,7 +69,7 @@ const CreateTaskCard = ({
       {/* Description */}
       <Textarea
         placeholder="Description"
-        className="mb-3 text-sm md:text-base"
+        className="mb-3 text-sm"
         value={form.description}
         onChange={(e) => setForm({ ...form, description: e.target.value })}
       />
@@ -78,9 +78,9 @@ const CreateTaskCard = ({
         {/* Due Date */}
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="outline" className="flex-1">
+            <Button variant="outline" className="flex-1 text-sm font-normal">
               <CalendarIcon />
-              {form.due_date ? formatDate(form.due_date) : "Pick due date"}
+              {form.due_date ? formatDate(form.due_date) : "Due date"}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0">
@@ -107,7 +107,7 @@ const CreateTaskCard = ({
                       priorityConfig?.color,
                     )}
                   />
-                  <span className="text-sm xl:text-base">{priorityConfig?.label}</span>
+                  <span className="text-sm">{priorityConfig?.label}</span>
                 </div>
               )}
             </SelectValue>
@@ -140,7 +140,7 @@ const CreateTaskCard = ({
               onClick={() => setForm({ ...form, status: s.value })}
             >
               <Icon className="w-4 h-4" />
-              <span className="hidden xl:inline text-sm 2xl:text-base">{s.label}</span>
+              <span className="hidden xl:inline text-sm">{s.label}</span>
             </Button>
           );
         })}

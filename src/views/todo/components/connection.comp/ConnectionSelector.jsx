@@ -16,10 +16,10 @@ export function ConnectionSelector({ connections, selectedIds, onChange }) {
             <Badge
               key={c.id}
               variant="outline"
-              className="flex items-center gap-1"
+              className="flex items-center gap-1 text-xs"
             >
               <span
-                className="w-5 h-5 rounded-full text-xs flex items-center justify-center text-white"
+                className="w-5 h-5 xl:w-6 xl:h-6 rounded-full text-xs flex items-center justify-center text-white"
                 style={{ backgroundColor: c.color }}
               >
                 {c.name[0].toUpperCase()}
